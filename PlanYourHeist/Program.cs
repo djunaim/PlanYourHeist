@@ -19,7 +19,7 @@ namespace PlanYourHeist
                 var teamMemberName = Console.ReadLine();
                 if (teamMemberName == "") break;
 
-                Console.WriteLine("Please enter team member's skill level between 0 to 10.");
+                Console.WriteLine("Please enter team member's skill level between 0 to 50.");
                 var teamMemberSkillLevel = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("Please enter team member's courage factor between 0.0 to 2.0.");
