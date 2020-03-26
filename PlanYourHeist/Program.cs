@@ -11,6 +11,7 @@ namespace PlanYourHeist
             Console.WriteLine("Plan Your Heist!");
 
             List<TeamMember> teamMembers = new List<TeamMember>();
+            var difficultyLevel = new Bank();
 
             while (true)
             {
@@ -18,7 +19,7 @@ namespace PlanYourHeist
                 var teamMemberName = Console.ReadLine();
                 if (teamMemberName == "") break;
 
-                Console.WriteLine("Please enter team member's skill level between 0 to 10.");
+                Console.WriteLine("Please enter team member's skill level between 0 to 50.");
                 var teamMemberSkillLevel = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("Please enter team member's courage factor between 0.0 to 2.0.");
@@ -38,10 +39,26 @@ namespace PlanYourHeist
             var numOfMembers = teamMembers.Count();
             Console.WriteLine($"there are {numOfMembers} members");
 
+            //foreach (var teamMember in teamMembers)
+            //{
+            //    Console.WriteLine($"{teamMember.Name} has a skill level of {teamMember.SkillLevel} and courage factor of {teamMember.CourageFactor}");
+            //}
+
+            var sumOfMembersSkill = 0;
             foreach (var teamMember in teamMembers)
             {
-                Console.WriteLine($"{teamMember.Name} has a skill level of {teamMember.SkillLevel} and courage factor of {teamMember.CourageFactor}");
+                sumOfMembersSkill += teamMember.SkillLevel;
             }
+
+            if (sumOfMembersSkill >= difficultyLevel.BankDifficultyLevel)
+            {
+                Console.WriteLine("You have conquered the bank!");
+            }
+            else
+            {
+                Console.WriteLine("Try again");
+            }
+
         }
     }
 }
