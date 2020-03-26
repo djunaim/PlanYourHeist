@@ -12,6 +12,10 @@ namespace PlanYourHeist
 
             List<TeamMember> teamMembers = new List<TeamMember>();
             var difficultyLevel = new Bank();
+            Random rnd = new Random();
+            var newRndNum = rnd.Next(-10, 10);
+
+            var newDifficultyLevel = difficultyLevel.BankDifficultyLevel + newRndNum;
 
             while (true)
             {
@@ -49,6 +53,8 @@ namespace PlanYourHeist
             {
                 sumOfMembersSkill += teamMember.SkillLevel;
             }
+
+            Console.WriteLine($"The team's combined skill level is {sumOfMembersSkill} and the bank's difficulty level {newDifficultyLevel}");
 
             if (sumOfMembersSkill >= difficultyLevel.BankDifficultyLevel)
             {
