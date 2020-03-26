@@ -12,10 +12,6 @@ namespace PlanYourHeist
 
             List<TeamMember> teamMembers = new List<TeamMember>();
             var difficultyLevel = new Bank();
-            Random rnd = new Random();
-            var newRndNum = rnd.Next(-10, 10);
-
-            var newDifficultyLevel = difficultyLevel.BankDifficultyLevel + newRndNum;
 
             while (true)
             {
@@ -38,6 +34,15 @@ namespace PlanYourHeist
 
                 teamMembers.Add(teamMember);
 
+
+            }
+            
+            Console.WriteLine("Please enter number of trial runs.");
+            var trialRuns = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < trialRuns; i++)
+            {
+                RobBank(difficultyLevel, teamMembers);
             }
 
             var numOfMembers = teamMembers.Count();
@@ -46,13 +51,22 @@ namespace PlanYourHeist
             //foreach (var teamMember in teamMembers)
             //{
             //    Console.WriteLine($"{teamMember.Name} has a skill level of {teamMember.SkillLevel} and courage factor of {teamMember.CourageFactor}");
-            //}
+            //}        
 
+        }
+        public static void RobBank(Bank difficultyLevel, List<TeamMember> teamMembers)
+        {
             var sumOfMembersSkill = 0;
+
             foreach (var teamMember in teamMembers)
             {
                 sumOfMembersSkill += teamMember.SkillLevel;
             }
+
+            Random rnd = new Random();
+            var luckValue = rnd.Next(-10, 10);
+
+            var newDifficultyLevel = difficultyLevel.BankDifficultyLevel + luckValue;
 
             Console.WriteLine($"The team's combined skill level is {sumOfMembersSkill} and the bank's difficulty level {newDifficultyLevel}");
 
@@ -64,7 +78,6 @@ namespace PlanYourHeist
             {
                 Console.WriteLine("Try again");
             }
-
         }
     }
 }
