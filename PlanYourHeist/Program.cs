@@ -72,8 +72,11 @@ namespace PlanYourHeist
                     failedRuns += 1;
                 }
 
-                Console.WriteLine($"There have been a {successfulRuns} number of successful runs and {failedRuns} number of failed runs.");
+                //RobBank(difficultyLevel, teamMembers);
+
             }
+
+            Console.WriteLine($"There have been a {successfulRuns} number of successful runs and {failedRuns} number of failed runs.");
 
             var numOfMembers = teamMembers.Count();
             Console.WriteLine($"there are {numOfMembers} members");
@@ -83,7 +86,7 @@ namespace PlanYourHeist
             //    Console.WriteLine($"{teamMember.Name} has a skill level of {teamMember.SkillLevel} and courage factor of {teamMember.CourageFactor}");
             //}        
 
-        }        
+        }
         //public static void RobBank(Bank difficultyLevel, List<TeamMember> teamMembers)
         //{
         //    var sumOfMembersSkill = 0;
@@ -115,6 +118,6 @@ namespace PlanYourHeist
 
         //    Console.WriteLine($"There have been a {successfulRuns} number of successful runs and {failedRuns} number of failed runs.");
         //}
-        
+
     }
 }
