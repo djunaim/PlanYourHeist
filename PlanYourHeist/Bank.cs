@@ -6,6 +6,6 @@ namespace PlanYourHeist
 {
     class Bank
     {
-        public int BankDifficultyLevel => 100;
+        public int BankDifficultyLevel { get; set; }
     }
 }

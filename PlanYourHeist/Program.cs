@@ -12,9 +12,13 @@ namespace PlanYourHeist
 
             List<TeamMember> teamMembers = new List<TeamMember>();
             var difficultyLevel = new Bank();
+            
+            Console.WriteLine("Enter the difficulty level for the bank.");
+            difficultyLevel.BankDifficultyLevel = int.Parse(Console.ReadLine());
 
             while (true)
             {
+
                 Console.WriteLine("Please enter a team member's first name.");
                 var teamMemberName = Console.ReadLine();
                 if (teamMemberName == "") break;
@@ -33,16 +37,42 @@ namespace PlanYourHeist
                 };
 
                 teamMembers.Add(teamMember);
-
-
             }
             
             Console.WriteLine("Please enter number of trial runs.");
             var trialRuns = int.Parse(Console.ReadLine());
 
+            var successfulRuns = 0;
+            var failedRuns = 0;
+
             for (int i = 0; i < trialRuns; i++)
             {
-                RobBank(difficultyLevel, teamMembers);
+                var sumOfMembersSkill = 0;
+
+                foreach (var teamMember in teamMembers)
+                {
+                    sumOfMembersSkill += teamMember.SkillLevel;
+                }
+
+                Random rnd = new Random();
+                var luckValue = rnd.Next(-10, 10);
+
+                var newDifficultyLevel = difficultyLevel.BankDifficultyLevel + luckValue;
+
+                Console.WriteLine($"The team's combined skill level is {sumOfMembersSkill} and the bank's difficulty level {newDifficultyLevel}");
+
+                if (sumOfMembersSkill >= difficultyLevel.BankDifficultyLevel)
+                {
+                    Console.WriteLine("You have conquered the bank!");
+                    successfulRuns += 1;
+                }
+                else
+                {
+                    Console.WriteLine("Try again");
+                    failedRuns += 1;
+                }
+
+                Console.WriteLine($"There have been a {successfulRuns} number of successful runs and {failedRuns} number of failed runs.");
             }
 
             var numOfMembers = teamMembers.Count();
@@ -53,31 +83,38 @@ namespace PlanYourHeist
             //    Console.WriteLine($"{teamMember.Name} has a skill level of {teamMember.SkillLevel} and courage factor of {teamMember.CourageFactor}");
             //}        
 
-        }
-        public static void RobBank(Bank difficultyLevel, List<TeamMember> teamMembers)
-        {
-            var sumOfMembersSkill = 0;
+        }        
+        //public static void RobBank(Bank difficultyLevel, List<TeamMember> teamMembers)
+        //{
+        //    var sumOfMembersSkill = 0;
+        //    var successfulRuns = 0;
+        //    var failedRuns = 0;
 
-            foreach (var teamMember in teamMembers)
-            {
-                sumOfMembersSkill += teamMember.SkillLevel;
-            }
+        //    foreach (var teamMember in teamMembers)
+        //    {
+        //        sumOfMembersSkill += teamMember.SkillLevel;
+        //    }
 
-            Random rnd = new Random();
-            var luckValue = rnd.Next(-10, 10);
+        //    Random rnd = new Random();
+        //    var luckValue = rnd.Next(-10, 10);
 
-            var newDifficultyLevel = difficultyLevel.BankDifficultyLevel + luckValue;
+        //    var newDifficultyLevel = difficultyLevel.BankDifficultyLevel + luckValue;
 
-            Console.WriteLine($"The team's combined skill level is {sumOfMembersSkill} and the bank's difficulty level {newDifficultyLevel}");
+        //    Console.WriteLine($"The team's combined skill level is {sumOfMembersSkill} and the bank's difficulty level {newDifficultyLevel}");
 
-            if (sumOfMembersSkill >= difficultyLevel.BankDifficultyLevel)
-            {
-                Console.WriteLine("You have conquered the bank!");
-            }
-            else
-            {
-                Console.WriteLine("Try again");
-            }
-        }
+        //    if (sumOfMembersSkill >= difficultyLevel.BankDifficultyLevel)
+        //    {
+        //        Console.WriteLine("You have conquered the bank!");
+        //        successfulRuns += 1;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Try again");
+        //        failedRuns += 1;
+        //    }
+
+        //    Console.WriteLine($"There have been a {successfulRuns} number of successful runs and {failedRuns} number of failed runs.");
+        //}
+        
     }
 }
