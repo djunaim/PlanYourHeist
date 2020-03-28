@@ -46,33 +46,17 @@ namespace PlanYourHeist
             var failedRuns = 0;
 
             for (int i = 0; i < trialRuns; i++)
-            {
-                var sumOfMembersSkill = 0;
+            {   
 
-                foreach (var teamMember in teamMembers)
+                var outcome = difficultyLevel.RobBank(teamMembers);
+                if (outcome)
                 {
-                    sumOfMembersSkill += teamMember.SkillLevel;
-                }
-
-                Random rnd = new Random();
-                var luckValue = rnd.Next(-10, 10);
-
-                var newDifficultyLevel = difficultyLevel.BankDifficultyLevel + luckValue;
-
-                Console.WriteLine($"The team's combined skill level is {sumOfMembersSkill} and the bank's difficulty level {newDifficultyLevel}");
-
-                if (sumOfMembersSkill >= difficultyLevel.BankDifficultyLevel)
-                {
-                    Console.WriteLine("You have conquered the bank!");
                     successfulRuns += 1;
                 }
                 else
                 {
-                    Console.WriteLine("Try again");
                     failedRuns += 1;
                 }
-
-                //RobBank(difficultyLevel, teamMembers);
 
             }
 
@@ -87,36 +71,36 @@ namespace PlanYourHeist
             //}        
 
         }
-        //public static void RobBank(Bank difficultyLevel, List<TeamMember> teamMembers)
+        
+        //public static bool RobBank(Bank difficultyLevel, List<TeamMember> teamMembers)
         //{
-        //    var sumOfMembersSkill = 0;
-        //    var successfulRuns = 0;
-        //    var failedRuns = 0;
+        //    //var sumOfMembersSkill = 0;
 
-        //    foreach (var teamMember in teamMembers)
-        //    {
-        //        sumOfMembersSkill += teamMember.SkillLevel;
-        //    }
+        //    //foreach (var teamMember in teamMembers)
+        //    //{
+        //    //    sumOfMembersSkill += teamMember.SkillLevel;
+        //    //}
 
         //    Random rnd = new Random();
         //    var luckValue = rnd.Next(-10, 10);
 
-        //    var newDifficultyLevel = difficultyLevel.BankDifficultyLevel + luckValue;
+        //    var newDifficultyLevelWithLuck = difficultyLevel.BankDifficultyLevel + luckValue;
 
-        //    Console.WriteLine($"The team's combined skill level is {sumOfMembersSkill} and the bank's difficulty level {newDifficultyLevel}");
+        //    var sumOfMembersSkill = teamMembers.Sum(teamMember => teamMember.SkillLevel);
 
-        //    if (sumOfMembersSkill >= difficultyLevel.BankDifficultyLevel)
+        //    Console.WriteLine($"The team's combined skill level is {sumOfMembersSkill} and the bank's difficulty level {newDifficultyLevelWithLuck}");
+
+        //    if (sumOfMembersSkill >= newDifficultyLevelWithLuck)
         //    {
         //        Console.WriteLine("You have conquered the bank!");
-        //        successfulRuns += 1;
+        //        return true;
         //    }
         //    else
         //    {
         //        Console.WriteLine("Try again");
-        //        failedRuns += 1;
+        //        return false;
         //    }
 
-        //    Console.WriteLine($"There have been a {successfulRuns} number of successful runs and {failedRuns} number of failed runs.");
         //}
 
     }
