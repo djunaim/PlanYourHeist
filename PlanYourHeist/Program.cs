@@ -25,9 +25,19 @@ namespace PlanYourHeist
 
                 Console.WriteLine("Please enter team member's skill level between 0 to 50.");
                 var teamMemberSkillLevel = int.Parse(Console.ReadLine());
+                while (teamMemberSkillLevel < 0)
+                {
+                    Console.WriteLine("Sorry, please enter a skill level between 0 to 50.");
+                    teamMemberSkillLevel = int.Parse(Console.ReadLine());
+                }
 
                 Console.WriteLine("Please enter team member's courage factor between 0.0 to 2.0.");
                 var teamMemberCourageFactor = decimal.Parse(Console.ReadLine());
+                while (teamMemberCourageFactor < 0.0m || teamMemberCourageFactor > 2.0m)
+                {
+                    Console.WriteLine("Sorry, please enter a skill level between 0.0 to 2.0.");
+                    teamMemberCourageFactor = decimal.Parse(Console.ReadLine());
+                }
 
                 var teamMember = new TeamMember
                 {
